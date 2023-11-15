@@ -4,6 +4,7 @@ export default class View {
   _data;
 
   update(data) {
+    debugger;
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
 

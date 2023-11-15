@@ -12,6 +12,7 @@ const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
 
+    debugger;
     if (!id) return;
 
     recipeView.renderSpinner();
@@ -50,7 +51,8 @@ const controlServings = function (newServings) {
 };
 
 const controlAddBookmark = function () {
-  if (model.state.recipe.bookmarked) model.removeBookmark(model.state.recipe.id);
+  if (model.state.recipe.bookmarked)
+    model.removeBookmark(model.state.recipe.id);
   else model.addBookmark(model.state.recipe);
 
   recipeView.update(model.state.recipe);
@@ -58,7 +60,12 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
